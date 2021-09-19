@@ -1,0 +1,122 @@
+body {
+  background-color: #2a8fce;
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  margin: 10px;
+  display: flex;
+  }
+
+.list-container {
+  background-color: #dee2e5;
+  margin-right: 10px;
+  padding: 20px 10px;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.list-top h2 {
+  text-transform: uppercase;
+  margin: 0 0 0 10px;
+  padding: 0;
+  font-size: 20px;
+}
+
+.list-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-card-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.plus {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+.list-item {
+  background-color: #fff;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: grab;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-title-field {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  resize: none;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.input-add-card {
+  color: #fff;
+  font-weight: 700;
+  background-color: #5ca84d;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-right: 15px;
+}
+
+.input-add-card:hover {
+  background-color: #4a863e;
+  cursor: pointer;
+}
+
+.input-block {
+  display: flex;
+  align-items: center;
+}
+
+.delete-button {
+  border: none;
+  cursor: pointer;
+  color: #6b778c;
+  font-size: 120%;
+  background-color: #dee2e5;
+}
+
+.task_delete-button {
+  border: none;
+  cursor: pointer;
+  color: #6b778c;
+  background-color: #fff;
+}
+
+.elementary {
+  display: none;
+}
+.elementary:last-child {
+  display: block;
+}
+.list-item ~ .elementary {
+  display: none;
+}
