@@ -1,10 +1,18 @@
 /* eslint-disable linebreak-style */
-// eslint-disable-next-line linebreak-style
-/* eslint-disable no-param-reassign */
+/* eslint-disable func-names */
 /* eslint-disable linebreak-style */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable eol-last */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-plusplus */
+/* eslint-disable camelcase */
+/* eslint-disable quote-props */
+/* eslint-disable comma-dangle */
+/* eslint-disable no-alert */
+/* eslint-disable no-console */
+/* eslint-disable prefer-const */
+/* eslint-disable semi */
+/* eslint-disable dot-notation */
+/* eslint-disable linebreak-style */
+
 import Form from './addForm';
 import Card from './Card';
 import DnD from './DnD';
@@ -47,28 +55,43 @@ addCard.forEach((item) => {
   });
 });
 
-window.addEventListener('beforeunload', () => {
-  const cards = document.querySelectorAll('.list-item');
-  const state = {};
-  cards.forEach((elem) => {
-    state[elem.id] = elem.value;
+window.onbeforeunload = function () {
+  const data = [];
+  let cards = document.querySelectorAll('.list-item:not(.elementary)');
+  let lists = document.querySelectorAll('.list')
+  cards.forEach((card) => {
+    let list_index;
+    for (list_index = 0; list_index < lists.length; list_index++) {
+      if (card.parentElement === lists.item(list_index)) {
+        break;
+      }
+    }
+    let element = {
+      'title': card.firstChild.textContent,
+      'list_index': list_index
+    };
+    data.push(element);
   });
 
-  localStorage.setItem('data', JSON.stringify(state));
-});
+  localStorage.setItem('data', JSON.stringify(data));
+}
 
-window.addEventListener('DOMContentLoader', () => {
-  const stateJSON = localStorage.getItem('data');
-  let state;
+window.addEventListener('DOMContentLoaded', () => {
+  let data = null;
   try {
-    state = JSON.parse(stateJSON);
+    data = JSON.parse(localStorage.getItem('data'));
   } catch (error) {
+    alert(error);
     console.log(error);
-
     return;
   }
+  let lists = document.querySelectorAll('.list');
+  data.forEach((card) => {
+    makeNewCard(card['title'], lists[card['list_index']])
+  });
 
-  for (const key in state) {
-    document.getElementById(key).value = state[key];
-  }
+  const allLists = document.querySelectorAll('.list');
+  const allCards = document.querySelectorAll('.list-item');
+
+  DnD(allCards, allLists);
 });

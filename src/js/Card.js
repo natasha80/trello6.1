@@ -33,7 +33,7 @@ export default class Card {
 
       close.addEventListener('click', () => {
         cardsArr.splice(card.id, 1);
-        cardsList.removeChild(el);
+        el.remove();
       });
     });
 
